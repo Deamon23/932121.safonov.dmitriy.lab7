@@ -8,26 +8,32 @@ function addShape(type) {
         const shape = document.createElement('div');
         shape.classList.add('shape', type);
         
-        // Генерация случайных размеров
         let size;
+        let left, top;
         if (type === 'square') {
-            size = getRandomSize(50, 200); // Размеры от 30 до 100 пикселей
+            size = getRandomSize(50, 200); 
             shape.style.width = size + 'px';
             shape.style.height = size + 'px';
+            left = Math.random() * (window.innerWidth - size) + 'px';
+            top = Math.random() * (window.innerHeight - size) + 'px';
         } else if (type === 'triangle') {
             size = getRandomSize(50, 200);
             shape.style.borderLeft = size + 'px solid transparent';
             shape.style.borderRight = size + 'px solid transparent';
             shape.style.borderBottom = size + 'px solid blue';
+            left = Math.random() * (window.innerWidth - 2*size) + 'px';
+            top = Math.random() * (window.innerHeight - size) + 'px';
         } else if (type === 'circle') {
             size = getRandomSize(50, 200);
             shape.style.width = size + 'px';
             shape.style.height = size + 'px';
             shape.style.borderRadius = '50%';
+            left = Math.random() * (window.innerWidth - size) + 'px';
+            top = Math.random() * (window.innerHeight - size) + 'px';
         }
 
-        shape.style.left = Math.random() * (window.innerWidth - size) + 'px';
-        shape.style.top = Math.random() * (window.innerHeight - size) + 'px';
+        shape.style.left = left;
+        shape.style.top = top;
 
         shape.addEventListener('click', () => {    
             if (type !== 'triangle') {
